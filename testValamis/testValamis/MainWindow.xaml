@@ -1,0 +1,19 @@
+﻿<Window 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:testValamis"
+        xmlns:ViewModel="clr-namespace:testValamis.ViewModel" x:Class="testValamis.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="600">
+    <Grid>
+        <Grid.DataContext>
+            <ViewModel:MainVM/>
+        </Grid.DataContext>
+        <TextBox Text="{Binding UrlSite, Mode=OneWay}"  Margin="39,25,181,363" IsReadOnly="True"/>
+        <Button Content="Start test" Command="{Binding StartTest}" Margin="426,25,30,363" />
+        <TextBlock HorizontalAlignment="Left" Margin="39,72,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="217" Width="372"/>
+
+    </Grid>
+</Window>
