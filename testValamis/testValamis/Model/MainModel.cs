@@ -8,17 +8,19 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-
+using testValamis.Elements;
+using testValamis.ViewModel;
 
 namespace testValamis.Model
 {
-    class MainModel : BindableBase
+    class MainModel 
     {
 
         private IReadOnlyCollection<IWebElement> elementsFilter;
 
         public void StartTest(string newUrl)
         {
+            OutputDataViewModel.Author = "test";
             RemoteWebDriver webDriver = new ChromeDriver();
             webDriver.Navigate().GoToUrl(newUrl);
             IWebElement webElement = webDriver.FindElementById("user-addr__input");
@@ -44,32 +46,67 @@ namespace testValamis.Model
                         if (checkbox.FindElement(By.TagName("input")).GetAttribute("value") == "Пицца")
                             checkbox.Click();
             ResultSearch(webDriver);
+            WorkWithFeedback(webDriver);
         }
 
         public void ResultSearch(RemoteWebDriver currentWebDriver)
         {
             IWebElement webElement = currentWebDriver.FindElementByClassName("vendor-list__container");
-            try
-            {
-                webElement.FindElement(By.TagName("ul"));
-            }
-            catch (NoSuchElementException ex)
-            {
-                System.Console.WriteLine("Error: " + ex.Message);
-                foreach (var sp in webElement.FindElements(By.ClassName("btn-radio__span")))
-                    if (sp.Text == "Все")
-                        sp.Click();
-            }
+            //try
+            //{
+            //    webElement.FindElement(By.TagName("ul"));
+            //}
+            //catch (NoSuchElementException ex)
+            //{
+            //    System.Console.WriteLine("Error: " + ex.Message);
+            //    foreach (var sp in webElement.FindElements(By.ClassName("btn-radio__span")))
+            //        if (sp.Text == "Все")
+            //            sp.Click();
+            //}
+            foreach (var sp in webElement.FindElements(By.ClassName("btn-radio__span")))
+                       if (sp.Text == "Все")
+                            sp.Click();
 
-            foreach (var searchResult in webElement.FindElements(By.ClassName("vendor-item")))
+                foreach (var searchResult in webElement.FindElements(By.ClassName("vendor-item")))
                 if (searchResult.FindElement(By.ClassName("vendor-item__title-link")).Text == "YES PIZZA")
                 {
                     IWebElement we = searchResult.FindElement(By.ClassName("vendor-item-info__min-order"));
                     String se = we.Text;
-                    Regex regex = new Regex("\d*");
-                    se=regex.IsMatch(se);
+                    se=Regex.Replace(se, "[^0-9]", "");
+                    int s;
+                    int.TryParse(se, out s);
+                    if (s < 500 && Regex.IsMatch(searchResult.FindElement(By.ClassName("vendor-item__cuisines")).Text, @"\s*(Пицца)\W"))
+                    {
+                        searchResult.Click();
+                        try
+                        {
+                            currentWebDriver.FindElementByClassName("popup--def__btn").Click();
+                        }
+                        catch (Exception ex)
+                        { }
+                        break;
+                    }
+                    else
+                        return;
+
+
                 }
 
+
+
+
+        }
+
+        public void WorkWithFeedback(RemoteWebDriver currentWebDriver)
+        {
+            foreach(var tab in currentWebDriver.FindElementsByClassName("vendor-headline__tab"))
+            {
+                if (Regex.IsMatch(tab.Text, @"Отзывы"))
+                {
+                    tab.Click();
+                    break;
+                }
+            }
 
         }
     }

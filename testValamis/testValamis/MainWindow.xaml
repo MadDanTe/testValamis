@@ -13,7 +13,14 @@
         </Grid.DataContext>
         <TextBox Text="{Binding UrlSite, Mode=OneWay}"  Margin="39,25,181,363" IsReadOnly="True"/>
         <Button Content="Start test" Command="{Binding StartTest}" Margin="426,25,30,363" />
-        <TextBlock HorizontalAlignment="Left" Margin="39,72,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="217" Width="372"/>
+        <Label Content="First Feedback:" HorizontalAlignment="Left" Margin="39,82,0,0" VerticalAlignment="Top" Width="86" Height="27"/>
+        <Label Content="Author:" HorizontalAlignment="Left" Margin="39,114,0,0" VerticalAlignment="Top" Width="52"/>
+        <Label Content="Rating:" HorizontalAlignment="Left" Margin="39,145,0,0" VerticalAlignment="Top"/>
+        <Label Content="Feedback:" HorizontalAlignment="Left" Margin="39,176,0,0" VerticalAlignment="Top" Width="64"/>
+        <TextBox HorizontalAlignment="Left" Height="26" Margin="100,114,0,0" TextWrapping="Wrap" Text="{Binding Author, Mode=OneWay}" VerticalAlignment="Top" Width="311" IsReadOnly="True"/>
+        <TextBox HorizontalAlignment="Left" Height="26" Margin="100,145,0,0" TextWrapping="Wrap" Text="{Binding Rating, Mode=OneWay}" VerticalAlignment="Top" Width="311" IsReadOnly="True"/>
+        <TextBox HorizontalAlignment="Left" Height="26" Margin="100,176,0,0" TextWrapping="Wrap" Text="{Binding Feedback, Mode=OneWay}" VerticalAlignment="Top" Width="311" IsReadOnly="True"/>
+
 
     </Grid>
 </Window>
