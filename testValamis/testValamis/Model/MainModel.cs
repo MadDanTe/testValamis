@@ -18,6 +18,7 @@ namespace testValamis.Model
 
         private IReadOnlyCollection<IWebElement> elementsFilter;
 
+
         public void StartTest(string newUrl)
         {
             OutputDataViewModel.Author = "test";

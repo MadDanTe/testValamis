@@ -26,8 +26,8 @@ namespace testValamis.ViewModel
         public MainVM()
         {
             //mainModel.PropertyChanged += (s, e) => { RaisePropertyChanged(e.PropertyName); };
-            potok1 = new Thread(new ParameterizedThreadStart(mainModel.StartTest(myUrl)));
-            StartTest = new DelegateCommand<string>(str => { potok1.Start(); });
+            potok1 = new Thread(new ParameterizedThreadStart(x=>{ mainModel.StartTest(myUrl); }));
+            StartTest = new DelegateCommand<string>(str => { potok1.Start(myUrl); });
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -44,7 +44,7 @@ namespace testValamis.ViewModel
 
         public string Author
         {
-            get { return author; }
+            get { return OutputDataViewModel.Author; }
             set { if(author==value) return; author = OutputDataViewModel.Author; OnPropertyChanged("Author"); }
         }
 
@@ -63,6 +63,10 @@ namespace testValamis.ViewModel
         public void setAuthor(string value)
         {
             author = value;
+        }
+        public static void Go(string value)
+        {
+
         }
     }
 }
