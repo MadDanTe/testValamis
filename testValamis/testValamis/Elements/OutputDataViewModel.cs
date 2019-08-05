@@ -4,12 +4,18 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using testValamis.ViewModel;
 
 namespace testValamis.Elements
 {
-    public static class OutputDataViewModel 
+    public class OutputDataViewModel 
     {
-        public static string Author { get; set; }
+
+        public string Author { get; set; }
+        public int Rate { get; set; }
+        public string Feedback { get; set; }
+
+        public string Date { get; set; }
 
     }
 }

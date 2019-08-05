@@ -16,11 +16,14 @@
         <Label Content="First Feedback:" HorizontalAlignment="Left" Margin="39,82,0,0" VerticalAlignment="Top" Width="86" Height="27"/>
         <Label Content="Author:" HorizontalAlignment="Left" Margin="39,114,0,0" VerticalAlignment="Top" Width="52"/>
         <Label Content="Rating:" HorizontalAlignment="Left" Margin="39,145,0,0" VerticalAlignment="Top"/>
-        <Label Content="Feedback:" HorizontalAlignment="Left" Margin="39,176,0,0" VerticalAlignment="Top" Width="64"/>
+        <Label Content="Date:" HorizontalAlignment="Left" Margin="39,176,0,0" VerticalAlignment="Top" Width="64"/>
+        <Label Content="Feedback:" HorizontalAlignment="Left" Margin="39,207,0,0" VerticalAlignment="Top" Width="64"/>
         <TextBox HorizontalAlignment="Left" Height="26" Margin="100,114,0,0" TextWrapping="Wrap" Text="{Binding Author, Mode=OneWay}" VerticalAlignment="Top" Width="311" IsReadOnly="True"/>
         <TextBox HorizontalAlignment="Left" Height="26" Margin="100,145,0,0" TextWrapping="Wrap" Text="{Binding Rating, Mode=OneWay}" VerticalAlignment="Top" Width="311" IsReadOnly="True"/>
-        <TextBox HorizontalAlignment="Left" Height="26" Margin="100,176,0,0" TextWrapping="Wrap" Text="{Binding Feedback, Mode=OneWay}" VerticalAlignment="Top" Width="311" IsReadOnly="True"/>
-
+        <TextBox HorizontalAlignment="Left" Height="26" Margin="100,176,0,0" TextWrapping="Wrap" Text="{Binding Date, Mode=OneWay}" VerticalAlignment="Top" Width="311" IsReadOnly="True"/>
+        <TextBox HorizontalAlignment="Left" Height="26" Margin="100,207,0,0" TextWrapping="Wrap" Text="{Binding Feedback, Mode=OneWay}" VerticalAlignment="Top" Width="311" IsReadOnly="True"/>
+        <Label Content="Status:" HorizontalAlignment="Left" Margin="39,251,0,0" FontSize="19" VerticalAlignment="Top" Width="64"/>
+        <TextBox HorizontalAlignment="Left" Height="95" Margin="39,291,0,0" TextWrapping="Wrap" Text="{Binding Status, Mode=OneWay}" VerticalAlignment="Top" Width="523" ScrollViewer.VerticalScrollBarVisibility="Auto" IsReadOnly="True"/>
 
     </Grid>
 </Window>

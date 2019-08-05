@@ -16,18 +16,19 @@ namespace testValamis.ViewModel
     public class MainVM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        private string author;
         private string feedback;
         public static Thread potok1;
-        private string rating;
+        private int rating;
+        private string author;
+        private string date;
+        private string status;
         private string myUrl = "https://www.delivery-club.ru/";
         readonly MainModel mainModel = new MainModel();
 
         public MainVM()
         {
-            //mainModel.PropertyChanged += (s, e) => { RaisePropertyChanged(e.PropertyName); };
-            potok1 = new Thread(new ParameterizedThreadStart(x=>{ mainModel.StartTest(myUrl); }));
-            StartTest = new DelegateCommand<string>(str => { potok1.Start(myUrl); });
+            potok1 = new Thread(new ParameterizedThreadStart(x=>{ mainModel.StartTest(myUrl, this); }));
+            StartTest = new DelegateCommand<string>(str => { potok1.Start(); });
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -44,29 +45,33 @@ namespace testValamis.ViewModel
 
         public string Author
         {
-            get { return OutputDataViewModel.Author; }
-            set { if(author==value) return; author = OutputDataViewModel.Author; OnPropertyChanged("Author"); }
+            get { return author; }
+            set { author=value; OnPropertyChanged("Author"); }
         }
 
-        public string Rating
+        public int Rating
         {
             get { return rating; }
-            set { rating = value; }
+            set { rating = value; OnPropertyChanged("Rating"); }
         }
 
         public string Feedback
         {
             get { return feedback; }
-            set { feedback = value; }
+            set { feedback = value; OnPropertyChanged("Feedback"); }
         }
 
-        public void setAuthor(string value)
+        public string Date
         {
-            author = value;
+            get { return date; }
+            set { date = value; OnPropertyChanged("Date"); }
         }
-        public static void Go(string value)
-        {
 
+        public string Status
+        {
+            get { return status; }
+            set { status+="\n"+value; OnPropertyChanged("Status"); }
         }
+
     }
 }
